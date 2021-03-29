@@ -31,7 +31,7 @@ export default class FilmotekaApiService {
       return;
     }
     this.page -= 1;
-    console.log(this.page);
+    
   }
   resetPage() {
     this.page = 1;
