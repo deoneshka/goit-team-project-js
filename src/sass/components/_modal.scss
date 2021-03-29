@@ -1,18 +1,105 @@
-// .modal-backdrop {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   overflow-y: auto;
-//   padding: 15px;
-//   background-color: rgba(0, 0, 0, 0.2);
-//   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+.overlay {
+  position: fixed;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  //   &.is-hidden {
+  //     display: none;
+  //   }
+}
 
-//   &.is-hidden {
-//     opacity: 0;
-//     visibility: hidden;
-//     pointer-events: none;
-//     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-//   }
-// }
+@media screen and (min-width: 320px) {
+  .overlay {
+    padding: 20px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .overlay {
+    padding: 231px 75px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .overlay {
+    padding: 100px 71px;
+  }
+}
+
+.modal {
+  position: relative;
+  margin: 0 auto;
+  padding: 0 auto;
+  width: 100%;
+  height: auto;
+  background-color: $header-text-color;
+  //   &.is-hidden {
+  //     opacity: 0;
+  //     visibility: hidden;
+  //     pointer-events: none;
+  //     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  //   }
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    padding: 48px 20px 41px 20px;
+    width: 280px;
+
+    &__poster-img {
+      width: 240px;
+      margin: 0 auto;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    display: flex;
+    width: 618px;
+    padding: 42px 28px;
+    &__poster {
+      margin-right: 32px;
+    }
+    &__poster-img {
+      width: 264px;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    width: 882px;
+    padding: 50px 30px 40px 30px;
+    &__poster {
+      margin-right: 30px;
+    }
+    &__poster-img {
+      width: 396px;
+    }
+  }
+}
+
+.modal__close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  fill: #000000;
+}
+
+.modal__descr {
+  &-list {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.modal__title {
+  font-weight: 500;
+  color: #000000;
+  @media screen and (min-width: 320px) {
+    @include font(20px, 23px);
+  }
+  @media screen and (min-width: 768px) {
+    @include font(20px, 23px);
+  }
+  @media screen and (min-width: 1024px) {
+    @include font(30px, 35px);
+  }
+}
