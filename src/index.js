@@ -90,3 +90,4 @@ function appendMovieListMarkup(results) {
 function clearMovieListContainer() {
   filmListRef.innerHTML = '';
 }
+
