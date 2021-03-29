@@ -1,32 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Kyiv-single-malt-team-project-js</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <title>Kyiv-single-malt-team-project-js</title>
-</head>
-
-<body>
- 
-  <!--header-->
-  <header>
-  
-  </header>
-  <!--movie-list -->
-<section>
-  
-</section>
-  <!--footer-->
-  <footer>
-    
-  </footer>
-
-</body>
-
+  <body>
+    <!--header-->
+    <header>
+      <div class="form-container">
+        <form class="search-form js-search-form">
+          <div class="form-group">
+            <label for="searchQuery" class="sr-only">Введите фильм для поиска</label>
+            <input 
+            name="query" 
+            type="text" 
+            class="search-movies" 
+            placeholder="Search movies..."
+            autocomplete="off" 
+            />
+          </div>
+          <button
+          type="button"
+          class="button btn"
+          data-action="load-more"
+          >Загрузить еще
+        </button>
+        <button
+          type="button"
+          class="button btn"
+          data-action="load-next"
+          >next
+        </button>
+        <button
+          type="button"
+          class="button btn"
+          data-action="load-prev"
+          >prev
+        </button>
+    </header>
+    <!--movie-list -->
+    <div class="movie-container">
+      
+      <ul class="movie-list"></ul>
+    </div>
+    <section></section>
+    <!--footer-->
+    <footer></footer>
+  </body>
 </html>
