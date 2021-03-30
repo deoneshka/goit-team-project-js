@@ -4,6 +4,9 @@ import FilmotekaApiService from './js/api/moviesApi';
 import movieAdapter from './js/utils/movieListsAdapter';
 import debounce from 'lodash.debounce';
 
+import {genresIdConverter} from './js/utils/genreConverter';
+
+
 const filmotekaApiService = new FilmotekaApiService();
 const filmListRef = document.querySelector('.films-list');
 // const loadMoreBtn = document.querySelector('[data-action="load-more"]');
@@ -19,6 +22,8 @@ inputRefValue.addEventListener('input', debounce(moviesSearch, 500));
 async function PopularMovie() {
   try {
     const moviesList = await filmotekaApiService.fetchResults();
+    const {results} = moviesList;
+    const changeGenre = results.map(el => genresIdConverter(el));
     renderMovieList(moviesList);
   } catch (error) {
     console.log('Ошибка! (PopularMovie)');
@@ -28,6 +33,7 @@ async function PopularMovie() {
 async function renderMovieList(object) {
   try {
     const { results } = object;
+    
     const movieList = await results.map(item =>
       movieCardTmp(movieAdapter(item)),
     );
@@ -91,3 +97,11 @@ function clearMovieListContainer() {
   filmListRef.innerHTML = '';
 }
 
+
+
+// function genresMovieShort(element) {
+//   element.genre_ids = element.genre_ids.map(genreMovie => (genreMovie = genres[genreMovie]))
+//     .slice(0, 3)
+//     .join(', ');
+//   return element;
+// }

@@ -8,7 +8,7 @@ export default class FilmotekaApiService {
     this.totalPages = 500;
   }
   async fetchResults() {
-    const urlPopular = `${BASE_URL}movie/popular/?api_key=${API_KEY}&page=${this.page}`;
+    const urlPopular = `${BASE_URL}trending/all/day?api_key=${API_KEY}&page=${this.page}`;
     const response = await fetch(urlPopular);
     const moviesLists = await response.json();
     return moviesLists;
