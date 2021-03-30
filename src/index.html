@@ -153,61 +153,72 @@
     </main>
     <footer></footer>
 
-    <!-- =====МОДАЛКА===== -->
-    <div class="overlay is-hidden">
-      <div class="modal is-hidden">
-        <svg class="modal__close-icon">
-          <use href="./images/sprite.svg#modal-close-btn"></use>
-        </svg>
-        <section class="modal__poster">
-          <img
-            class="modal__poster-img"
-            src="https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg"
-            alt="poster"
-          />
-        </section>
-        <section class="modal__descr">
-          <h2 class="modal__title">A FISTFUL OF LEAD</h2>
-          <ul class="list">
-            <li>
-              <ul class="list modal__descr-list">
-                <li>Vote / Votes</li>
-                <li>7.3/1260</li>
+    <!-- =====МОДАЛКА=====  -->
+    <!-- Для открытия модалки убрать класс is-hidden -->
+    <!-- Для JS изпольз. классы которые начинаются на js- :) -->
+    <div class="js-open-modal overlay is-hidden">
+      <div class="modal-container">
+        <div class="modal">
+          <svg class="modal__close-icon">
+            <use href="./images/sprite.svg#modal-close-btn"></use>
+          </svg>
+          <section class="modal__poster">
+            <img
+              class="modal__poster-img"
+              src="https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg"
+              alt="poster"
+            />
+          </section>
+          <section class="modal__descr">
+            <h2 class="modal__descr-title">A FISTFUL OF LEAD</h2>
+
+            <div class="modal__list-position">
+              <ul class="list modal__descr-list--static">
+                <li class="modal__descr-details">Vote / Votes</li>
+                <li class="modal__descr-details">Popularity</li>
+                <li class="modal__descr-details">Original Title</li>
+                <li class="modal__descr-details">Genre</li>
               </ul>
-            </li>
-            <li>
               <ul class="list modal__descr-list">
-                <li>Popularity</li>
-                <li>100.2</li>
+                <li class="modal__descr-item">
+                  <span class="modal__descr-vote">7.3</span>
+                  <span class="modal__descr-separator">/</span>
+                  <span class="modal__descr-votes">1260</span>
+                </li>
+                <li class="modal__descr-item">100.2</li>
+                <li class="modal__descr-item modal__descr-item--title">
+                  A FISTFUL OF lead
+                </li>
+                <li class="modal__descr-item">Western</li>
               </ul>
-            </li>
-            <li>
-              <ul class="list modal__descr-list">
-                <li>Original Title</li>
-                <li>A FISTFUL OF LEAD</li>
-              </ul>
-            </li>
-            <li>
-              <ul class="list modal__descr-list">
-                <li>Genre</li>
-                <li>Western</li>
-              </ul>
-            </li>
-          </ul>
-          <h4>ABOUT</h4>
-          <p>
-            Four of the West’s most infamous outlaws assemble to steal a huge
-            stash of gold from the most corrupt settlement of the gold rush
-            towns. But not all goes to plan one is killed and the other three
-            escapes with bags of gold hide out in the abandoned gold mine where
-            they happen across another gang of three – who themselves were
-            planning to hit the very same bank! As tensions rise, things go from
-            bad to worse as they realise the bags of gold are filled with
-            lead... they’ve been double crossed – but by who and how?
-          </p>
-          <button type="button">ADD TO WATCHED</button>
-          <button type="button">ADD TO QUEUE</button>
-        </section>
+            </div>
+            <h4 class="modal__descr-subtitle">ABOUT</h4>
+            <p class="modal__film-descr">
+              Four of the West’s most infamous outlaws assemble to steal a huge
+              stash of gold from the most corrupt settlement of the gold rush
+              towns. But not all goes to plan one is killed and the other three
+              escapes with bags of gold hide out in the abandoned gold mine
+              where they happen across another gang of three – who themselves
+              were planning to hit the very same bank! As tensions rise, things
+              go from bad to worse as they realise the bags of gold are filled
+              with lead... they’ve been double crossed – but by who and how?
+            </p>
+            <div class="modal__buttons">
+              <button
+                type="submit"
+                class="js-modal-btn-watched modal__buttons-watched"
+              >
+                ADD TO WATCHED
+              </button>
+              <button
+                type="submit"
+                class="js-modal-btn-queue modal__buttons-queue"
+              >
+                ADD TO QUEUE
+              </button>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   </body>
