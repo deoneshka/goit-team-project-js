@@ -8,7 +8,7 @@ export default class FilmotekaApiService {
     this.totalPages = 500;
   }
   async fetchResults() {
-    const urlPopular = `${BASE_URL}trending/all/day?api_key=${API_KEY}&page=${this.page}`;
+    const urlPopular = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=${this.page}`;
     const response = await fetch(urlPopular);
     const moviesLists = await response.json();
     return moviesLists;
@@ -19,6 +19,13 @@ export default class FilmotekaApiService {
     const moviesLists = await response.json();
     return moviesLists;
   }
+  async fetchMovies(id) {
+    const urlSearch = `${BASE_URL}movie/${id}?api_key=${API_KEY}`;
+    const response = await fetch(urlSearch);
+    const movieData = await response.json();
+    return movieData;
+  }
+
   incrementPage() {
     console.log(this.page);
     if (this.currentPage === this.totalPages) {

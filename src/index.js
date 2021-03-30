@@ -4,8 +4,7 @@ import FilmotekaApiService from './js/api/moviesApi';
 import movieAdapter from './js/utils/movieListsAdapter';
 import debounce from 'lodash.debounce';
 
-import {genresIdConverter} from './js/utils/genreConverter';
-
+import { genresIdConverter } from './js/utils/genreConverter';
 
 const filmotekaApiService = new FilmotekaApiService();
 const filmListRef = document.querySelector('.films-list');
@@ -15,6 +14,7 @@ const filmListRef = document.querySelector('.films-list');
 const inputRefValue = document.querySelector('#js-input');
 
 inputRefValue.addEventListener('input', debounce(moviesSearch, 500));
+
 // loadMoreBtn.addEventListener('click', onLoadMore);
 // loadNextBtn.addEventListener('click', onLoadNext);
 // loadPrevBtn.addEventListener('click', onLoadPrev);
@@ -22,7 +22,7 @@ inputRefValue.addEventListener('input', debounce(moviesSearch, 500));
 async function PopularMovie() {
   try {
     const moviesList = await filmotekaApiService.fetchResults();
-    const {results} = moviesList;
+    const { results } = moviesList;
     const changeGenre = results.map(el => genresIdConverter(el));
     renderMovieList(moviesList);
   } catch (error) {
@@ -33,7 +33,7 @@ async function PopularMovie() {
 async function renderMovieList(object) {
   try {
     const { results } = object;
-    
+
     const movieList = await results.map(item =>
       movieCardTmp(movieAdapter(item)),
     );
@@ -47,24 +47,36 @@ PopularMovie();
 
 async function moviesSearch(event) {
   try {
-    event.preventDefault();
     clearMovieListContainer();
 
     filmotekaApiService.query = event.target.value;
 
     if (filmotekaApiService.query === '') {
+      PopularMovie();
       return;
     }
     if (filmotekaApiService.query === ' ') {
       return alert('Вы ничего не ввели');
     }
-    filmotekaApiService.resetPage();
+    
+    // filmotekaApiService.resetPage();
     const moviesList = await filmotekaApiService.fetchSearch();
+    const { results } = moviesList;
+    const changeGenre = results.map(el => genresIdConverter(el));
     return renderMovieList(moviesList);
   } catch (error) {
     console.log('Ошибка! (moviesSearch)');
   }
 }
+
+// async function getMovie (event) {
+//   const movie = await filmotekaApiService.fetchMovies(791373);
+//   renderMovieData(object);
+// }
+// function renderMovieData (object){
+//   const movieDataInfo =  movieCardTmp(movieAdapter(object));
+// }
+// getMovie();
 
 // async function onLoadMore() {
 //   try {
@@ -96,8 +108,6 @@ function appendMovieListMarkup(results) {
 function clearMovieListContainer() {
   filmListRef.innerHTML = '';
 }
-
-
 
 // function genresMovieShort(element) {
 //   element.genre_ids = element.genre_ids.map(genreMovie => (genreMovie = genres[genreMovie]))
