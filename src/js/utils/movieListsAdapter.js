@@ -13,6 +13,6 @@ const movieAdapter = ({
   rating: vote_average,
   releaseDate: release_date,
   genre: genre_ids,
-  // genre: getGenre(genre_ids),
+  
 });
 export default movieAdapter;
