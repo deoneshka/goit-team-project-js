@@ -4,8 +4,16 @@
 .films-list {
   &__item {
     width: 280px;
+    transition: transform 250ms linear;
+
+    &:hover,
+    &:focus {
+      transform: scale(1.05);
+    }
   }
   &__img-box {
+    background-color: $accent-color;
+    border-radius: 5px;
     width: 100%;
     height: 402px;
   }
