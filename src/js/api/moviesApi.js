@@ -14,7 +14,7 @@ export default class FilmotekaApiService {
     return moviesLists;
   }
   async fetchSearch() {
-    const urlSearch = `${BASE_URL}search/movie/?api_key=${API_KEY}&page=${this.page}&query=${this.searchQuery}`;
+    const urlSearch = `${BASE_URL}search/movie?api_key=${API_KEY}&page=${this.page}&query=${this.searchQuery}`;
     const response = await fetch(urlSearch);
     const moviesLists = await response.json();
     return moviesLists;
