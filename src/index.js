@@ -4,6 +4,7 @@ import FilmotekaApiService from './js/api/moviesApi';
 import movieAdapter from './js/utils/movieListsAdapter';
 import spinner from './js/components/spinner';
 import debounce from 'lodash.debounce';
+import connectTabs from './js/components/tab';
 
 import { genresIdConverter } from './js/utils/genreConverter';
 
@@ -122,3 +123,5 @@ function clearMovieListContainer() {
 //     .join(', ');
 //   return element;
 // }
+
+connectTabs();
