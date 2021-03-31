@@ -62,7 +62,7 @@
       <section class="films">
         <div class="container">
           <h1 class="title hidden">list of films</h1>
-          <ul class="films-list list"></ul>
+          <ul class="films-list list js-film-list"></ul>
         </div>
       </section>
     </main>
@@ -83,71 +83,14 @@
     </footer>
 
     <div id="spinner" class="spinner is-hidden"></div>
-<!-- =====МОДАЛКА=====  -->
-    <!-- Для открытия модалки убрать класс is-hidden -->
-    <!-- Для JS изпольз. классы которые начинаются на js- :) -->
+    <!-- =====МОДАЛКА=====  -->
     <div class="js-open-modal overlay is-hidden">
-      <div class="modal-container">
-        <div class="modal">
-          <svg class="modal__close-icon">
+      <div class="container modal-container">
+        <div class="modal__wraper modal">
+          <svg class="modal__close-icon js-close-btn">
             <use href="./images/sprite.svg#modal-close-btn"></use>
           </svg>
-          <section class="modal__poster">
-            <img
-              class="modal__poster-img"
-              src="https://www.themoviedb.org/t/p/w220_and_h330_face/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg"
-              alt="poster"
-            />
-          </section>
-          <section class="modal__descr">
-            <h2 class="modal__descr-title">A FISTFUL OF LEAD</h2>
-
-            <div class="modal__list-position">
-              <ul class="list modal__descr-list--static">
-                <li class="modal__descr-details">Vote / Votes</li>
-                <li class="modal__descr-details">Popularity</li>
-                <li class="modal__descr-details">Original Title</li>
-                <li class="modal__descr-details">Genre</li>
-              </ul>
-              <ul class="list modal__descr-list">
-                <li class="modal__descr-item">
-                  <span class="modal__descr-vote">7.3</span>
-                  <span class="modal__descr-separator">/</span>
-                  <span class="modal__descr-votes">1260</span>
-                </li>
-                <li class="modal__descr-item">100.2</li>
-                <li class="modal__descr-item modal__descr-item--title">
-                  A FISTFUL OF lead
-                </li>
-                <li class="modal__descr-item">Western</li>
-              </ul>
-            </div>
-            <h4 class="modal__descr-subtitle">ABOUT</h4>
-            <p class="modal__film-descr">
-              Four of the West’s most infamous outlaws assemble to steal a huge
-              stash of gold from the most corrupt settlement of the gold rush
-              towns. But not all goes to plan one is killed and the other three
-              escapes with bags of gold hide out in the abandoned gold mine
-              where they happen across another gang of three – who themselves
-              were planning to hit the very same bank! As tensions rise, things
-              go from bad to worse as they realise the bags of gold are filled
-              with lead... they’ve been double crossed – but by who and how?
-            </p>
-            <div class="modal__buttons">
-              <button
-                type="submit"
-                class="js-modal-btn-watched modal__buttons-watched"
-              >
-                ADD TO WATCHED
-              </button>
-              <button
-                type="submit"
-                class="js-modal-btn-queue modal__buttons-queue"
-              >
-                ADD TO QUEUE
-              </button>
-            </div>
-          </section>
+          <div class="modal__card-info modal js-modal"></div>
         </div>
       </div>
     </div>
