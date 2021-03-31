@@ -2,6 +2,7 @@ import './sass/main.scss';
 import movieCardTmp from './templates/movieCard.hbs';
 import FilmotekaApiService from './js/api/moviesApi';
 import movieAdapter from './js/utils/movieListsAdapter';
+import spinner from './js/components/spinner';
 import debounce from 'lodash.debounce';
 
 import { genresIdConverter } from './js/utils/genreConverter';
@@ -20,6 +21,7 @@ inputRefValue.addEventListener('input', debounce(moviesSearch, 500));
 // loadPrevBtn.addEventListener('click', onLoadPrev);
 
 async function PopularMovie() {
+  spinner.show();
   try {
     const moviesList = await filmotekaApiService.fetchResults();
     const { results } = moviesList;
@@ -28,9 +30,11 @@ async function PopularMovie() {
   } catch (error) {
     console.log('Ошибка! (PopularMovie)');
   }
+  spinner.hide();
 }
 
 async function renderMovieList(object) {
+  spinner.show();
   try {
     const { results } = object;
 
@@ -41,11 +45,13 @@ async function renderMovieList(object) {
   } catch (error) {
     console.log('Ошибка! (renderMovieList)');
   }
+  spinner.hide();
 }
 
 PopularMovie();
 
 async function moviesSearch(event) {
+  spinner.show();
   try {
     clearMovieListContainer();
 
@@ -58,7 +64,7 @@ async function moviesSearch(event) {
     if (filmotekaApiService.query === ' ') {
       return alert('Вы ничего не ввели');
     }
-    
+
     // filmotekaApiService.resetPage();
     const moviesList = await filmotekaApiService.fetchSearch();
     const { results } = moviesList;
@@ -67,6 +73,7 @@ async function moviesSearch(event) {
   } catch (error) {
     console.log('Ошибка! (moviesSearch)');
   }
+  spinner.hide();
 }
 
 // async function getMovie (event) {
