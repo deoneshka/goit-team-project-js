@@ -5,6 +5,7 @@ import FilmotekaApiService from './js/api/moviesApi';
 import movieAdapter from './js/utils/movieListsAdapter';
 import spinner from './js/components/spinner';
 import debounce from 'lodash.debounce';
+import connectTabs from './js/components/tab';
 
 import { genresIdConverter } from './js/utils/genreConverter';
 
@@ -162,3 +163,14 @@ function appendMovieCardInfo(results) {
 function clearContainer(ref) {
   ref.innerHTML = '';
 }
+
+
+// function genresMovieShort(element) {
+//   element.genre_ids = element.genre_ids.map(genreMovie => (genreMovie = genres[genreMovie]))
+//     .slice(0, 3)
+//     .join(', ');
+//   return element;
+// }
+
+connectTabs();
+

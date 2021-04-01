@@ -18,7 +18,7 @@
 
   <body>
     <header class="header">
-      <div class="container">
+      <div id="home" class="container b-tab active">
         <div class="header__wrapper">
           <a
             class="logo header__logo link"
@@ -32,15 +32,16 @@
           </a>
           <nav class="navigation">
             <ul class="navigation__list list">
-              <li class="navigation__item">
+              <li class="navigation__item active">
                 <a
+                data-tab="home"
                   class="navigation__link navigation__link--active link"
-                  href="#"
+                  href="#home"
                   >home</a
                 >
               </li>
               <li class="navigation__item">
-                <a class="navigation__link link" href="#">my library</a>
+                <a class="navigation__link link" data-tab="library" href="#library">my library</a>
               </li>
             </ul>
           </nav>
@@ -55,6 +56,32 @@
           <p class="input__error" id="js-input-error">
             Search result not successful. Enter the correct movie name and
           </p>
+        </div>
+      </div>
+
+      <div id="library" class="container b-tab">
+        <div class="header__wrapper">
+          <a class="logo header__logo link" href="./index.html" aria-label="filmoteka logo">
+            <svg class="logo__icon">
+              <use href="./images/sprite.svg#icon-logo"></use>
+            </svg>
+            <span class="logo__text">Filmoteka</span>
+          </a>
+          <nav class="navigation">
+            <ul class="navigation__list list">
+              <li class="navigation__item">
+                <a data-tab="home" class="navigation__link navigation__link--active link "
+                  href="#home">home</a>
+              </li>
+              <li class="navigation__item line active">
+                <a class="navigation__link link " data-tab="library" href="#library">my library</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="library-button__wrapper">
+          <button class="library-button" type="button">WATCHED</button>
+          <button class="library-button" type="button">QUEUE</button>
         </div>
       </div>
     </header>
