@@ -4,7 +4,7 @@
   background-size: 320px;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 46px 0 43px;
+  padding: 46px 0 97px;
 
   &__wrapper {
     display: flex;
@@ -12,11 +12,16 @@
     justify-content: space-between;
   }
 }
+.header.library {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('../images/library/library-bg-mobile.jpg');
+  padding: 46px 0 65px;
+}
 .logo {
   &__icon {
     width: 24px;
     height: 24px;
-    fill: $logo-color;
+    stroke: $logo-color;
   }
   &__text {
     display: none;
@@ -31,26 +36,27 @@
   &__item:nth-child(2) {
     margin-left: 40px;
   }
+  &__item.active {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: $accent-color;
+    }
+  }
   &__link {
     font-weight: 500;
     @include font(12px, 14px);
     text-transform: uppercase;
     color: $header-text-color;
   }
-  &__item.active {
-    position: relative;
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 4px;
-      background: $accent-color;
-      border-radius: 2px;
-    }
-  }
 }
 .input {
+  position: relative;
   width: 280px;
   height: 20px;
   font-weight: 400;
@@ -70,14 +76,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
     margin-top: 38px;
+
+    &.tab-inactive {
+      display: none;
+    }
   }
   &__error {
+    position: absolute;
+    content: '';
+    left: 20px;
+    top: 155px;
     font-weight: 400;
     @include font(14px, 16px);
     color: $error-color;
-    margin-top: 22px;
   }
 }
 @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
@@ -87,6 +100,10 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('../images/header/header-bg-mobile@2x.jpg');
   }
+  .header.library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/library/library-bg-mobile@2x.jpg');
+  }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 @media screen and (min-width: 768px) {
@@ -94,7 +111,12 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('../images/header/header-bg-tablet.jpg');
     background-size: 768px;
-    padding: 40px 0 60px;
+    padding: 41px 0 97px;
+  }
+  .header.library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/library/library-bg-tablet.jpg');
+    padding: 41px 0 65px;
   }
   .logo {
     display: flex;
@@ -111,6 +133,10 @@
   }
   .input {
     width: 336px;
+
+    &__error {
+      left: 188px;
+    }
   }
 }
 @media screen and (min-device-pixel-ratio: 2) and (min-width: 768px),
@@ -119,6 +145,10 @@
   .header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('../images/header/header-bg-tablet@2x.jpg');
+  }
+  .header.library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/library/library-bg-tablet@2x.jpg');
   }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -129,6 +159,15 @@
     background-size: cover;
     // background-size: 1024px;
   }
+  .header.library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/library/library-bg-desktop.jpg');
+  }
+  .input {
+    &__error {
+      left: 315px;
+    }
+  }
 }
 @media screen and (min-device-pixel-ratio: 2) and (min-width: 1024px),
   screen and (min-resolution: 192dpi) and (min-width: 1024px),
@@ -136,5 +175,9 @@
   .header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('../images/header/header-bg-desktop@2x.jpg');
+  }
+  .header.library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/library/library-bg-desktop@2x.jpg');
   }
 }

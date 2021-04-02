@@ -5,9 +5,8 @@ import FilmotekaApiService from './js/api/moviesApi';
 import movieAdapter from './js/utils/movieListsAdapter';
 import spinner from './js/components/spinner';
 import debounce from 'lodash.debounce';
-import connectTabs from './js/components/tab';
-
 import { genresIdConverter } from './js/utils/genreConverter';
+import './js/components/tabs';
 
 const filmotekaApiService = new FilmotekaApiService();
 const filmListRef = document.querySelector('.films-list');
@@ -19,11 +18,9 @@ const closeBtnRef = document.querySelector('.js-close-btn');
 
 const inputRefValue = document.querySelector('#js-input');
 
-
 // const loadMoreBtn = document.querySelector('[data-action="load-more"]');
 // const loadNextBtn = document.querySelector('[data-action="load-next"]');
 // const loadPrevBtn = document.querySelector('[data-action="load-prev"]');
-
 
 closeBtnRef.addEventListener('click', closeModal);
 inputRefValue.addEventListener('input', debounce(moviesSearch, 500));
@@ -32,7 +29,7 @@ onMovieClick.addEventListener('click', showModal);
 async function showModal(event) {
   try {
     window.addEventListener('keydown', closeModal);
-  
+
     const target = event.target.parentNode;
     if (target.parentNode.nodeName !== 'A') return;
     const idMovie = target.parentNode.dataset.id;
@@ -164,13 +161,9 @@ function clearContainer(ref) {
   ref.innerHTML = '';
 }
 
-
 // function genresMovieShort(element) {
 //   element.genre_ids = element.genre_ids.map(genreMovie => (genreMovie = genres[genreMovie]))
 //     .slice(0, 3)
 //     .join(', ');
 //   return element;
 // }
-
-connectTabs();
-
