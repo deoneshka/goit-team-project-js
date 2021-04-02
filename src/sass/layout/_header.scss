@@ -1,7 +1,8 @@
 .header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url('../images/header/header-bg-mobile.jpg');
-  background-size: 320px;
+  // background-size: 320px;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   padding: 46px 0 97px;
@@ -56,7 +57,6 @@
   }
 }
 .input {
-  position: relative;
   width: 280px;
   height: 20px;
   font-weight: 400;
@@ -73,6 +73,7 @@
     color: $header-text-color;
   }
   &__wrapper {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,11 +84,21 @@
       display: none;
     }
   }
+  &__search-icon {
+    position: absolute;
+    content: '';
+    bottom: 6px;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    stroke: $header-text-color;
+  }
   &__error {
     position: absolute;
     content: '';
-    left: 20px;
-    top: 155px;
+    top: (20px+22px);
+    // высота инпута плюс расстояние до ошибки по макету
+    left: 0;
     font-weight: 400;
     @include font(14px, 16px);
     color: $error-color;
@@ -110,7 +121,7 @@
   .header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('../images/header/header-bg-tablet.jpg');
-    background-size: 768px;
+    // background-size: 768px;
     padding: 41px 0 97px;
   }
   .header.library {
@@ -134,8 +145,13 @@
   .input {
     width: 336px;
 
+    &__search-icon {
+      right: (217px-75px);
+      //расстояние от иконки до конца страницы макета минус отступ контейнера
+    }
     &__error {
-      left: 188px;
+      left: (188px-75px);
+      //расстояние от начала макета до текста минус отступ контейнера
     }
   }
 }
@@ -156,7 +172,6 @@
   .header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('../images/header/header-bg-desktop.jpg');
-    background-size: cover;
     // background-size: 1024px;
   }
   .header.library {
@@ -164,8 +179,13 @@
       url('../images/library/library-bg-desktop.jpg');
   }
   .input {
+    &__search-icon {
+      right: (345px-71px);
+      //расстояние от иконки до конца страницы макета минус отступ контейнера
+    }
     &__error {
-      left: 315px;
+      left: (315px-71px);
+      //расстояние от начала макета до текста минус отступ контейнера
     }
   }
 }
