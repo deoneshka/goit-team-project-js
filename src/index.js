@@ -28,7 +28,7 @@ onMovieClick.addEventListener('click', showModal);
 
 async function showModal(event) {
   try {
-    window.addEventListener('keypdown', closeModal);
+    window.addEventListener('keydown', closeModal);
 
     const target = event.target.parentNode;
     if (target.parentNode.nodeName !== 'A') return;
