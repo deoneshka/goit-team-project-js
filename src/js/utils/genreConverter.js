@@ -1,6 +1,5 @@
 import genreList from './genreList'
 
-
  export const genresIdConverter =(el) => {
   
     el.genre_ids = el.genre_ids
