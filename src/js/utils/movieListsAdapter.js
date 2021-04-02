@@ -15,7 +15,7 @@ const movieAdapter = ({
   imgSrc: getPosterPath(poster_path),
   title: original_title,
   rating: vote_average,
-  releaseDate: release_date,
+  releaseDate: release_date.slice(0,4),
   genre: genre_ids,
   id: id,
   popularity: popularity,
