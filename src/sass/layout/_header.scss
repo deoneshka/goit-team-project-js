@@ -54,6 +54,11 @@
     @include font(12px, 14px);
     text-transform: uppercase;
     color: $header-text-color;
+
+    &:hover,
+    &:focus {
+      color: $accent-color;
+    }
   }
 }
 .input {
