@@ -27,6 +27,7 @@ inputRefValue.addEventListener('input', debounce(moviesSearch, 500));
 onMovieClick.addEventListener('click', showModal);
 
 async function showModal(event) {
+  event.preventDefault();
   try {
     window.addEventListener('keydown', closeModal);
 
