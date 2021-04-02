@@ -17,8 +17,8 @@
   </head>
 
   <body>
-    <header class="header">
-      <div id="home" class="container b-tab active">
+    <header class="header" id="home">
+      <div class="container">
         <div class="header__wrapper">
           <a
             class="logo header__logo link"
@@ -26,60 +26,41 @@
             aria-label="filmoteka logo"
           >
             <svg class="logo__icon">
-              <use href="./images/sprite.svg#icon-logo"></use>
+              <use href="./images/sprite.svg#icon-film"></use>
             </svg>
             <span class="logo__text">Filmoteka</span>
           </a>
           <nav class="navigation">
             <ul class="navigation__list list">
               <li class="navigation__item active">
-                <a
-                data-tab="home"
-                  class="navigation__link navigation__link--active link"
-                  href="#home"
+                <a class="navigation__link link" href="#home" data-tab="home"
                   >home</a
                 >
               </li>
               <li class="navigation__item">
-                <a class="navigation__link link" data-tab="library" href="#library">my library</a>
+                <a
+                  class="navigation__link link"
+                  href="#library"
+                  data-tab="library"
+                  >my library</a
+                >
               </li>
             </ul>
           </nav>
         </div>
-        <div class="input__wrapper">
+        <div class="input__wrapper tab-active" id="js-search">
           <input
             class="input header__input"
             type="text"
             placeholder="Поиск фильмов"
             id="js-input"
           />
-          <p class="input__error" id="js-input-error">
-            Search result not successful. Enter the correct movie name and
-          </p>
+          <svg class="input__search-icon">
+            <use href="./images/sprite.svg#icon-search"></use>
+          </svg>
+          <p class="input__error" id="js-input-error"></p>
         </div>
-      </div>
-
-      <div id="library" class="container b-tab">
-        <div class="header__wrapper">
-          <a class="logo header__logo link" href="./index.html" aria-label="filmoteka logo">
-            <svg class="logo__icon">
-              <use href="./images/sprite.svg#icon-logo"></use>
-            </svg>
-            <span class="logo__text">Filmoteka</span>
-          </a>
-          <nav class="navigation">
-            <ul class="navigation__list list">
-              <li class="navigation__item">
-                <a data-tab="home" class="navigation__link navigation__link--active link "
-                  href="#home">home</a>
-              </li>
-              <li class="navigation__item line active">
-                <a class="navigation__link link " data-tab="library" href="#library">my library</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="library-button__wrapper">
+        <div class="library-button__wrapper tab-inactive" id="js-buttons">
           <button class="library-button" type="button">WATCHED</button>
           <button class="library-button" type="button">QUEUE</button>
         </div>
@@ -93,11 +74,12 @@
         </div>
       </section>
     </main>
-
     <footer class="footer">
       <div class="container">
         <div class="footer__wrapper">
-          <p class="footer__rights">&copy; 2020 | All Rights Reserved |</p>
+          <p class="footer__rights">
+            &copy; 2021 | All Rights Reserved |&nbsp;
+          </p>
           <p class="footer__rights">
             Developed with
             <svg class="footer__icon-favorite">
@@ -108,9 +90,7 @@
         </div>
       </div>
     </footer>
-
     <div id="spinner" class="spinner is-hidden"></div>
-    <!-- =====МОДАЛКА=====  -->
     <div class="js-open-modal overlay is-hidden">
       <div class="container">
         <div class="modal__wrapper">
