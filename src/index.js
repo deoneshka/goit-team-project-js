@@ -1,6 +1,7 @@
 import './sass/main.scss';
 import movieCardTmp from './templates/movieCard.hbs';
 import movieInfoCardTmp from './templates/movieCardInfo.hbs';
+import moviePosterTmp from './templates/moviePoster.hbs';
 import FilmotekaApiService from './js/api/moviesApi';
 import movieAdapter from './js/utils/movieListsAdapter';
 import spinner from './js/components/spinner';
@@ -16,6 +17,7 @@ const filmListRef = document.querySelector('.films-list');
 const onMovieClick = document.querySelector('.js-film-list');
 const modalRef = document.querySelector('.js-open-modal');
 const modalContaierRef = document.querySelector('.js-modal');
+const modalPosterRef = document.querySelector('.js-poster');
 const lightBoxRef = document.querySelector('.overlay');
 const closeBtnRef = document.querySelector('.js-close-btn');
 const inputRefValue = document.querySelector('#js-input');
@@ -70,8 +72,10 @@ async function getMovie(id) {
 }
 async function renderMovieData(object) {
   try {
+    const movieDataPoster = await moviePosterTmp(movieAdapter(object));
     const movieDataInfo = await movieInfoCardTmp(movieAdapter(object));
-    appendMovieCardInfo(movieDataInfo);
+    appendMovieCardInfo(modalPosterRef, movieDataPoster);
+    appendMovieCardInfo(modalContaierRef, movieDataInfo);
   } catch (error) {
     console.log(error + ' Ошибка в renderMovieData');
   }
@@ -80,6 +84,7 @@ async function renderMovieData(object) {
 function closeModal() {
   modalRef.classList.add('is-hidden');
   clearContainer(modalContaierRef);
+  clearContainer(modalPosterRef);
   window.removeEventListener('keydown', closeModalOnEsc);
   body.classList.remove('no-scroll');
 }
@@ -164,8 +169,8 @@ async function moviesSearch(event) {
 function appendMovieListMarkup(results) {
   filmListRef.insertAdjacentHTML('beforeend', results.join(''));
 }
-function appendMovieCardInfo(results) {
-  modalContaierRef.insertAdjacentHTML('beforeend', results);
+function appendMovieCardInfo(ref, results) {
+  ref.insertAdjacentHTML('beforeend', results);
 }
 function clearContainer(ref) {
   ref.innerHTML = '';
