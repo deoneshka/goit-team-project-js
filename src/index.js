@@ -7,6 +7,7 @@ import spinner from './js/components/spinner';
 import debounce from 'lodash.debounce';
 import { genresIdConverter } from './js/utils/genreConverter';
 import './js/components/tabs';
+import './js/components/backToTop';
 
 let oldInputRef = '';
 
