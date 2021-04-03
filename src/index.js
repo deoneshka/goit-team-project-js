@@ -11,10 +11,12 @@ import './js/components/tabs';
 let oldInputRef = '';
 
 const filmotekaApiService = new FilmotekaApiService();
+const body = document.querySelector('body');
 const filmListRef = document.querySelector('.films-list');
 const onMovieClick = document.querySelector('.js-film-list');
 const modalRef = document.querySelector('.js-open-modal');
 const modalContaierRef = document.querySelector('.js-modal');
+const lightBoxRef = document.querySelector('.overlay');
 const closeBtnRef = document.querySelector('.js-close-btn');
 const inputRefValue = document.querySelector('#js-input');
 const errorTextRef = document.querySelector('#js-input-error');
@@ -23,25 +25,39 @@ const textErrorManyMatches =
   'Too many matches found. Please enter a more specific query!';
 
 closeBtnRef.addEventListener('click', closeModal);
+lightBoxRef.addEventListener('click', closeModalOnBackdrop);
 inputRefValue.addEventListener('input', debounce(moviesSearch, 500));
 onMovieClick.addEventListener('click', showModal);
 
 async function showModal(event) {
   event.preventDefault();
-  try {
-    window.addEventListener('keydown', closeModal);
+  body.classList.add('no-scroll');
+  window.addEventListener('keydown', closeModalOnEsc);
+  const target = event.target.parentNode;
+  if (target.parentNode.nodeName !== 'A') return;
+  modalRef.classList.remove('is-hidden'); //Сначало открывается модалка, потом идет запрос
 
-    const target = event.target.parentNode;
-    if (target.parentNode.nodeName !== 'A') return;
+  try {
     const idMovie = target.parentNode.dataset.id;
     await getMovie(idMovie);
-    modalRef.classList.remove('is-hidden');
   } catch (error) {
     console.log('Ошибка В showModal');
   }
 }
+// =====КНОПКИ В МОДАЛКЕ======
+// const modalBtnWatched = document.querySelector('.js-modal-btn-watched');
+// const modalBtnQueue = document.querySelector('.js-modal-btn-queue');
+// modalBtnQueue.addEventListener('click', () => {
+//   console.log('click on modalBtnQueue');
+// });
+// modalBtnWatched.addEventListener('click', () => {
+//   console.log('click on modalBtnWatched');
+// });
+// ========================
+
 async function getMovie(id) {
   const movieInfo = await filmotekaApiService.fetchMovies(id);
+
   //Жанр конвертер для карточки
   movieInfo.genres = await movieInfo.genres
     .map(el => {
@@ -61,13 +77,21 @@ async function renderMovieData(object) {
   }
 }
 
-function closeModal(event) {
-  clearContainer(modalContaierRef);
+function closeModal() {
   modalRef.classList.add('is-hidden');
-  console.log(event);
-  if (event.code === 'ESCAPE') {
-    window.removeEventListener('keydown', closeModal);
+  clearContainer(modalContaierRef);
+  window.removeEventListener('keydown', closeModalOnEsc);
+  body.classList.remove('no-scroll');
+}
+
+function closeModalOnBackdrop(event) {
+  if (event.target === event.currentTarget) {
+    closeModal();
   }
+}
+function closeModalOnEsc(event) {
+  if (event.key !== 'Escape') return;
+  closeModal();
 }
 
 async function PopularMovie() {
