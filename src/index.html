@@ -92,14 +92,25 @@
     </footer>
     <div id="spinner" class="spinner is-hidden"></div>
     <div class="js-open-modal overlay is-hidden">
-      <div class="container">
-        <div class="modal__wrapper">
-          <svg class="modal__close-icon js-close-btn">
-            <use href="./images/sprite.svg#modal-close-btn"></use>
-          </svg>
-          <div class="modal__card-info modal js-modal"></div>
+      <!-- <div class="container-test"> -->
+      <div class="modal__wrapper">
+        <svg class="modal__close-icon js-close-btn">
+          <use href="./images/sprite.svg#modal-close-btn"></use>
+        </svg>
+        <div class="modal__card-info modal js-modal"></div>
+        <div class="modal__buttons">
+          <button
+            type="submit"
+            class="js-modal-btn-watched modal__buttons-watched"
+          >
+            ADD TO WATCHED
+          </button>
+          <button type="submit" class="js-modal-btn-queue modal__buttons-queue">
+            ADD TO QUEUE
+          </button>
         </div>
       </div>
+      <!-- </div> -->
     </div>
   </body>
 </html>
