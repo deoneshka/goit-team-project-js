@@ -1,11 +1,5 @@
-const refs = {
-  header: document.querySelector('.header'),
-  activeLink: document.querySelector('.navigation__list'),
-  homeButton: document.querySelector('[data-tab="home"]'),
-  libraryButton: document.querySelector('[data-tab="library"]'),
-  searchContainer: document.querySelector('#js-search'),
-  libraryContainer: document.querySelector('#js-buttons'),
-};
+import refs from'./refs'
+
 
 refs.homeButton.addEventListener('click', onHomeButton);
 refs.libraryButton.addEventListener('click', onLibraryButton);
