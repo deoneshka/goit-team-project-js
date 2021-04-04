@@ -34,6 +34,7 @@ onMovieClick.addEventListener('click', showModal);
 
 async function showModal(event) {
   event.preventDefault();
+  spinner.show(); //--
   body.classList.add('no-scroll');
   window.addEventListener('keydown', closeModalOnEsc);
   const target = event.target.parentNode;
@@ -46,6 +47,7 @@ async function showModal(event) {
   } catch (error) {
     console.log('Ошибка В showModal');
   }
+  spinner.hide(); //--
 }
 // =====КНОПКИ В МОДАЛКЕ======
 // const modalBtnWatched = document.querySelector('.js-modal-btn-watched');
@@ -137,7 +139,10 @@ async function moviesSearch(event) {
       await PopularMovie();
       return;
     }
-    if (inputRefValue.value.length > 0 && inputRefValue.value.length < 3) {
+    if (
+      inputRefValue.value.length > 0 &&
+      inputRefValue.value.trim().length < 3 // добавлено трим чтобы не обрабатывать запросы с одних пробелов
+    ) {
       errorTextRef.textContent = textErrorManyMatches;
       if (inputRefValue.value.length > oldInputRef.length) {
         // spinner.hide();
