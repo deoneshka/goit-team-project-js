@@ -1,15 +1,12 @@
 import filmotekaApiService from './getApiClass';
-
-import {clearContainer} from './clearContainer'
-import {genresIdConverter} from'../utils/genreConverter'
-import {renderMovieList} from './renderMoviesList'
-import {PopularMovie} from './getPopularMovies'
-
-import errorMessage from './errors'
-import spinner from './spinner'
-import refs from'./refs'
+import { clearContainer } from './clearContainer';
+import { genresIdConverter } from '../utils/genreConverter';
+import { renderMovieList } from './renderMoviesList';
+import { PopularMovie } from './getPopularMovies';
+import errorMessage from './errors';
+import spinner from './spinner';
+import refs from './refs';
 import debounce from 'lodash.debounce';
-
 
 let oldInputRef = '';
 refs.inputValue.addEventListener('input', debounce(moviesSearch, 500));
@@ -41,7 +38,6 @@ async function moviesSearch(event) {
     if (results.length === 0) {
       spinner.hide();
       refs.errorText.textContent = errorMessage.notFound;
-
       return;
     } else {
       spinner.hide();
