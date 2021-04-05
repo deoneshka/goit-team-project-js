@@ -49,6 +49,7 @@ async function setPaginator(event) {
   let page = filmotekaApiService.page;
   let lastPage = options.totalItems / options.itemsPerPage;
   const activeBtnRef = document.querySelector('.tui-is-selected');
+
   
   if (event.target.classList[1] === 'tui-next') {
     page += 1;
@@ -59,14 +60,15 @@ async function setPaginator(event) {
   } else if (text === 'last') {
     page = lastPage;
   } else if (text === '...') {
-    page = activeBtnRef.textContent;
+    page = Number(activeBtnRef.textContent);
   } else {
     page = Number(text);
   };
 
-  filmotekaApiService.page = page;
-
-  if (!refs.inputValue.value) {
+  if (page && page !== lastPage) {
+    filmotekaApiService.page = page;
+    
+    if (!refs.inputValue.value) {
     const popularList = await filmotekaApiService.fetchResults();
     const { results } = popularList;
     results.map(el => genresIdConverter(el));
@@ -82,6 +84,7 @@ async function setPaginator(event) {
   clearContainer(refs.filmList);
   renderMovieList(searchList);
   scrollElements();
+  };
 };
 
 function scrollElements() {
