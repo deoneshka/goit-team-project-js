@@ -1,9 +1,12 @@
 import refs from './refs';
+import { PopularMovie } from './getPopularMovies';
 
 refs.homeButton.addEventListener('click', onHomeButton);
 refs.libraryButton.addEventListener('click', onLibraryButton);
 
+
 function onHomeButton() {
+  PopularMovie();
   if (refs.header.id === 'home') return;
   refs.header.id = 'home';
   toggleActiveLink();

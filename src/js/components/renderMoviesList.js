@@ -1,7 +1,7 @@
-import refs from'./refs'
-import spinner from './spinner'
-import movieAdapter from '../utils/movieListsAdapter'
-import movieCardTmp from '/templates/movieCard.hbs'
+import refs from './refs';
+import spinner from './spinner';
+import movieAdapter from '../utils/movieListsAdapter';
+import movieCardTmp from '/templates/movieCard.hbs';
 
 async function renderMovieList(object) {
   spinner.show();
@@ -19,6 +19,6 @@ async function renderMovieList(object) {
 }
 
 function appendMovieListMarkup(results) {
-  refs.onMovieClick.insertAdjacentHTML('beforeend', results.join(''));
+  refs.filmList.insertAdjacentHTML('beforeend', results.join(''));
 }
-export {renderMovieList, appendMovieListMarkup}
+export { renderMovieList, appendMovieListMarkup };
