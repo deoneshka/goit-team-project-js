@@ -3,6 +3,7 @@ import { clearContainer } from './clearContainer';
 import { genresIdConverter } from '../utils/genreConverter';
 import { renderMovieList } from './renderMoviesList';
 import filmotekaApiService from './getApiClass';
+import { pagination } from './paginationPages';
 
 async function PopularMovie() {
   try {
@@ -12,6 +13,8 @@ async function PopularMovie() {
 
     results.map(el => genresIdConverter(el));
     renderMovieList(moviesList);
+    pagination.reset(moviesList.total_results);
+    filmotekaApiService.resetPage();
   } catch (error) {
     console.log(error);
   }
