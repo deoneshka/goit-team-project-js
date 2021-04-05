@@ -19,6 +19,6 @@ async function renderMovieList(object) {
 }
 
 function appendMovieListMarkup(results) {
-  refs.filmList.insertAdjacentHTML('beforeend', results.join(''));
+  refs.onMovieClick.insertAdjacentHTML('beforeend', results.join(''));
 }
 export {renderMovieList, appendMovieListMarkup}

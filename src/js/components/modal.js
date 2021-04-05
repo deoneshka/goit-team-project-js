@@ -2,6 +2,7 @@ import refs from './refs';
 import spinner from './spinner';
 import { getMovie } from './getGenresId';
 import { clearContainer } from './clearContainer';
+import {addsToLibrary} from './addsToLibrary'
 
 refs.closeBtn.addEventListener('click', closeModal);
 refs.lightBox.addEventListener('click', closeModalOnBackdrop);
@@ -23,6 +24,9 @@ async function showModal(event) {
     spinner.show();
     await getMovie(idMovie);
     spinner.hide();
+
+   addsToLibrary(idMovie);
+
   } catch (error) {
     console.log(error);
   }
