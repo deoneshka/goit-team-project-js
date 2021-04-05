@@ -69,13 +69,18 @@ async function setPaginator(event) {
     filmotekaApiService.page = page;
     
     if (!refs.inputValue.value) {
-    const popularList = await filmotekaApiService.fetchResults();
-    const { results } = popularList;
-    results.map(el => genresIdConverter(el));
-    clearContainer(refs.filmList);
-    renderMovieList(popularList);
-    scrollElements();
-    return;
+      try{
+        const popularList = await filmotekaApiService.fetchResults();
+        const { results } = popularList;
+        await results.map(el => genresIdConverter(el));
+        clearContainer(refs.filmList);
+        renderMovieList(popularList);
+        scrollElements();
+        return;
+      }
+    catch (error){
+      console.log(error);
+    }
   };
   
   const searchList = await filmotekaApiService.fetchSearch();

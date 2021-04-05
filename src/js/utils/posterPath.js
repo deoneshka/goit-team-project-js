@@ -8,3 +8,4 @@ export const getPosterPath = imageName => {
   }
   return `${IMG_URL}${imageName}`;
 };
+

@@ -15,7 +15,7 @@ const movieAdapter = ({
   imgSrc: getPosterPath(poster_path),
   title: original_title,
   rating: vote_average,
-  releaseDate: release_date.slice(0, 4),
+  releaseDate: checkDate(release_date),
   genre: genre_ids,
   id: id,
   popularity: popularity,
@@ -24,3 +24,11 @@ const movieAdapter = ({
   genres: genres,
 });
 export default movieAdapter;
+
+
+function checkDate (date){
+  if(!date){
+    return date;
+  }
+  return date.slice(0, 4)
+}

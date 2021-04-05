@@ -16,5 +16,6 @@ export default {
   searchContainer: document.querySelector('#js-search'),
   libraryContainer: document.querySelector('#js-buttons'),
   paginationRef: document.getElementById('pagination'),
+  
 
 };
