@@ -6,3 +6,4 @@ import './js/components/renderMoviesList';
 import './js/components/modal';
 import './js/components/renderCardInfo';
 import './js/components/backToTop';
+import './js/components/paginationPages';
