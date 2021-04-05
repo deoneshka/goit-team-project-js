@@ -15,4 +15,5 @@ export default {
   libraryButton: document.querySelector('[data-tab="library"]'),
   searchContainer: document.querySelector('#js-search'),
   libraryContainer: document.querySelector('#js-buttons'),
+  modalButtons: document.querySelector('.modal__buttons')
 };
