@@ -1,5 +1,4 @@
-import refs from'./refs'
-
+import refs from './refs';
 
 refs.homeButton.addEventListener('click', onHomeButton);
 refs.libraryButton.addEventListener('click', onLibraryButton);

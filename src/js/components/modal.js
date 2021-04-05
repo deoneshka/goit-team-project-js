@@ -9,19 +9,23 @@ refs.onMovieClick.addEventListener('click', showModal);
 
 async function showModal(event) {
   event.preventDefault();
-  spinner.show();
-  refs.body.classList.add('no-scroll');
-  window.addEventListener('keydown', closeModalOnEsc);
+
   const target = event.target.parentNode;
   if (target.parentNode.nodeName !== 'A') return;
+
+  refs.body.classList.add('no-scroll');
   refs.modal.classList.remove('is-hidden');
+
+  window.addEventListener('keydown', closeModalOnEsc);
+
   try {
     const idMovie = target.parentNode.dataset.id;
+    spinner.show();
     await getMovie(idMovie);
+    spinner.hide();
   } catch (error) {
     console.log(error);
   }
-  spinner.hide();
 }
 
 function closeModal() {
