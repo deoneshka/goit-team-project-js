@@ -1,6 +1,11 @@
+//imports
 import refs from './refs';
-import "firebase/auth";
 import firebase from "firebase/app";
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
+import "firebase/auth";
+//const
+const { alert } = require('@pnotify/core');
 const firebaseConfig = {
 apiKey: "AIzaSyBsh1sTBXWGmCNayKn94Jdm8L4dd8oBEh8",
     authDomain: "team-project-js.firebaseapp.com",
@@ -9,9 +14,6 @@ apiKey: "AIzaSyBsh1sTBXWGmCNayKn94Jdm8L4dd8oBEh8",
     messagingSenderId: "141999361293",
     appId: "1:141999361293:web:2dd5006750ae334e40f444"
 };
-
-
-
 firebase.initializeApp(firebaseConfig);
 
 refs.authOpenBtn.addEventListener('click', openAuthnModal);
@@ -35,7 +37,6 @@ function openAuthnModal() {
     
 
 }
-
 //modal functions
 function createModal(func) {
        refs.authContainerForHTML.insertAdjacentHTML('beforeend', func)
@@ -80,7 +81,6 @@ function getAuthForm() {
     return authContent;
 }
 
-
 //heandler for form
 function authFormHeandler(event) {
     event.preventDefault()
@@ -88,26 +88,84 @@ function authFormHeandler(event) {
     const password = event.target.querySelector('#password').value;
     const authSignUpBtn = document.querySelector('.authorization__registration-btn');
     const authLoginBtn = document.querySelector('.authorization__login-btn');
-    authSignUpBtn.addEventListener('click', createNewUser(email, password));
-    
+    authSignUpBtn.addEventListener('click', createNewUser(email, password, event));
+    authLoginBtn.addEventListener('click', loginUser(email, password, event))
 }
 
-//sign up functions
-function createNewUser(email, password) {
+//sign up function
+function createNewUser(email, password, event) {
+  if (event.submitter.className !== 'authorization__registration-btn') {
+          return
+  } else {
     firebase.auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(closeAuthModal, alert('Sign up successful!'))
-        .catch(function (error) {
+    .createUserWithEmailAndPassword(email, password)
+    .then(cred => {
+      if (cred.user.uid) {
+        successfulSignUp()
+        closeAuthModal()
+      }
+    })
+    .catch(function (error) {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      if (errorCode == 'auth/weak-password') {
+        weakPassword()
+      } else {
+        errorAlert(errorMessage)
+      }
+      console.log(error);
+    });
+}}
+
+//login func
+function loginUser(email, password, event) {
+  if (event.submitter.className !== 'authorization__login-btn') return
+  else {
+    firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
+      if (cred.user.isAnonymous === false) {
+        successfulLogIn()
+        closeAuthModal()
+      }
+    })
+    .catch(function(error) {
   // Handle Errors here.
   const errorCode = error.code;
   const errorMessage = error.message;
-  if (errorCode == 'auth/weak-password') {
-    alert('The password is too weak.');
+  if (errorCode === 'auth/wrong-password') {
+    alert('Wrong password.');
   } else {
-    alert(errorMessage);
+    errorAlert(errorMessage);
   }
   console.log(error);
 });
+ } 
 }
 
 
+//notify
+function successfulSignUp() {
+   alert({
+  text: "Sign Up is successful!",
+  type: 'success'
+   });
+}
+
+function weakPassword() {
+   alert({
+  text: "The password is too weak.",
+  type: 'error'
+   });
+}
+function errorAlert(errorMessage) {
+  alert({
+  text: `${errorMessage}`,
+  type: 'error'
+   });
+}
+function successfulLogIn() {
+  alert({
+  text: "Log In is successful!",
+  type: 'success'
+   });
+}
