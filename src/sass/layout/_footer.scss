@@ -7,6 +7,10 @@
     height: 12.75px;
     fill: $accent-color;
     color: $footer-text-color;
+
+    animation: heartBeat;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
   }
   &__rights,
   &__link {

@@ -20,9 +20,14 @@
 }
 .logo {
   &__icon {
+    display: inline-block;
     width: 24px;
     height: 24px;
     stroke: $logo-color;
+
+    animation: rotateInDownLeft;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
   }
   &__text {
     display: none;
