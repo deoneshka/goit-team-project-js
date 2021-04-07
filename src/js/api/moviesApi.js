@@ -11,6 +11,7 @@ export default class FilmotekaApiService {
     const urlPopular = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=${this.page}`;
     const response = await fetch(urlPopular);
     const moviesLists = await response.json();
+    
     return moviesLists;
   }
   async fetchSearch() {

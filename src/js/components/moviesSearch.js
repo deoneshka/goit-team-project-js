@@ -3,6 +3,7 @@ import { clearContainer } from './clearContainer';
 import { genresIdConverter } from '../utils/genreConverter';
 import { renderMovieList } from './renderMoviesList';
 import { PopularMovie } from './getPopularMovies';
+import { pagination } from './paginationPages';
 import errorMessage from './errors';
 import spinner from './spinner';
 import refs from './refs';
@@ -15,6 +16,8 @@ async function moviesSearch(event) {
   try {
     if (!refs.inputValue.value) {
       refs.errorText.textContent = '';
+      pagination.reset();
+      filmotekaApiService.resetPage();
       await PopularMovie();
       return;
     }
@@ -29,10 +32,12 @@ async function moviesSearch(event) {
       }
     }
 
+    filmotekaApiService.resetPage();
     filmotekaApiService.query = event.target.value;
     spinner.show();
     const moviesList = await filmotekaApiService.fetchSearch();
     const { results } = moviesList;
+    pagination.reset(moviesList.total_results);
     results.map(el => genresIdConverter(el));
 
     if (results.length === 0) {
