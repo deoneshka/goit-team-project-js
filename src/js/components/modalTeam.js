@@ -1,7 +1,7 @@
 
 const openTeamRef = document.querySelector('[data-open-team]');
 const backdropRef = document.querySelector('[data-backdrop]');
-const closeTeamRef = document.querySelector('[data-close-team]')
+const closeTeamRef = document.querySelector('[data-close-team]');
 
 openTeamRef.addEventListener('click', openTeamModal);
 closeTeamRef.addEventListener('click', closeTeamModal);
