@@ -16,9 +16,10 @@ export default {
   searchContainer: document.querySelector('#js-search'),
   libraryContainer: document.querySelector('#js-buttons'),
   paginationRef: document.getElementById('pagination'),
-  authOpenBtn:  document.querySelector('.authorization__main-btn'),
-  authModal:  document.querySelector('.authorization__backdrop'),
-  authContainerForHTML: document.querySelector('.authorization__modal-container'),
-  authCloseBtn:  document.querySelector('.authorization__close-btn'),
-
+  authOpenBtn: document.querySelector('.authorization__main-btn'),
+  authModal: document.querySelector('.authorization__backdrop'),
+  authContainerForHTML: document.querySelector(
+    '.authorization__modal-container',
+  ),
+  authCloseBtn: document.querySelector('.authorization__close-btn'),
 };
