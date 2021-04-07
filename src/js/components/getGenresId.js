@@ -12,6 +12,7 @@ async function getMovie(id) {
     .slice(0, 2)
     .join(', ');
 
+
   await renderMovieData(movieInfo);
 }
 export { getMovie };
