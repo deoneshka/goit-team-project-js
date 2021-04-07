@@ -4,11 +4,16 @@ import { genresIdConverter } from '../utils/genreConverter';
 import { renderMovieList } from './renderMoviesList';
 import filmotekaApiService from './getApiClass';
 import { pagination } from './paginationPages';
+import spinner from './spinner';
 
 async function PopularMovie() {
+  
   try {
+    
     clearContainer(refs.filmList);
+    spinner.show();
     const moviesList = await filmotekaApiService.fetchResults();
+    spinner.hide();
     const { results } = moviesList;
 
     results.map(el => genresIdConverter(el));

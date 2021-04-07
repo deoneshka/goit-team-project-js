@@ -22,4 +22,6 @@ export default {
     '.authorization__modal-container',
   ),
   authCloseBtn: document.querySelector('.authorization__close-btn'),
+  libraryWatchedBtn: document.querySelector('.js-library-watched'),
+  libraryQueueBtn: document.querySelector('.js-library-queue'),
 };

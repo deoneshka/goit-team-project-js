@@ -1,11 +1,13 @@
 import refs from './refs';
 import { PopularMovie } from './getPopularMovies';
+import filmotekaApiService from './getApiClass';
+import { clearContainer } from './clearContainer';
 
 refs.homeButton.addEventListener('click', onHomeButton);
 refs.libraryButton.addEventListener('click', onLibraryButton);
 
-
 function onHomeButton() {
+  filmotekaApiService.resetPage();
   PopularMovie();
   if (refs.header.id === 'home') return;
   refs.header.id = 'home';
@@ -13,7 +15,9 @@ function onHomeButton() {
   toggleLibraryBg();
   toggleLibraryTab();
   toggleHomeTab();
+  refs.paginationRef.classList.remove('hidden');
 }
+
 function onLibraryButton() {
   if (refs.header.id === 'library') return;
   refs.header.id = 'library';
@@ -21,6 +25,8 @@ function onLibraryButton() {
   toggleLibraryBg();
   toggleHomeTab();
   toggleLibraryTab();
+  refs.paginationRef.classList.add('hidden');
+  refs.filmList.innerHTML = '';
 }
 ///////////////////////////////////////////////////////////
 function toggleHomeTab() {

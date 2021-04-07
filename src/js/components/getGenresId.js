@@ -11,7 +11,7 @@ async function getMovie(id) {
     })
     .slice(0, 2)
     .join(', ');
-  // console.log(movieInfo);
+
 
   await renderMovieData(movieInfo);
 }

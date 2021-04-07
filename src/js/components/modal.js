@@ -9,6 +9,7 @@ refs.lightBox.addEventListener('click', closeModalOnBackdrop);
 refs.onMovieClick.addEventListener('click', showModal);
 
 async function showModal(event) {
+  
   event.preventDefault();
 
   const target = event.target.parentNode;
