@@ -5,7 +5,6 @@ import { renderMovieList } from './renderMoviesList';
 import { PopularMovie } from './getPopularMovies';
 import { pagination } from './paginationPages';
 import errorMessage from './errors';
-import spinner from './spinner';
 import refs from './refs';
 import debounce from 'lodash.debounce';
 
@@ -27,25 +26,21 @@ async function moviesSearch(event) {
     ) {
       refs.errorText.textContent = errorMessage.manyMatches;
       if (refs.inputValue.value.length > oldInputRef.length) {
-        // spinner.hide();
         return;
       }
     }
 
     filmotekaApiService.resetPage();
     filmotekaApiService.query = event.target.value;
-    spinner.show();
     const moviesList = await filmotekaApiService.fetchSearch();
     const { results } = moviesList;
     pagination.reset(moviesList.total_results);
     results.map(el => genresIdConverter(el));
 
     if (results.length === 0) {
-      spinner.hide();
       refs.errorText.textContent = errorMessage.notFound;
       return;
     } else {
-      spinner.hide();
       clearContainer(refs.filmList);
       refs.errorText.textContent = '';
       renderMovieList(moviesList);

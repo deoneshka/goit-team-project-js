@@ -1,5 +1,4 @@
 import refs from './refs';
-import spinner from './spinner';
 import { getMovie } from './getGenresId';
 import { clearContainer } from './clearContainer';
 import { addsToLibrary } from './addsToLibrary';
@@ -23,10 +22,6 @@ async function showModal(event) {
       (refs.body.clientWidth - window.innerWidth) / 2 + 'px';
   }
 
-  // console.log(
-  //   refs.lightBox.firstElementChild.clientHeight - window.innerHeight,
-  // );
-
   refs.body.lastElementChild.style.visibility = 'hidden';
   refs.body.classList.add('no-scroll');
   refs.modal.classList.remove('is-hidden');
@@ -35,10 +30,7 @@ async function showModal(event) {
 
   try {
     const idMovie = target.parentNode.dataset.id;
-    spinner.show();
     await getMovie(idMovie);
-    spinner.hide();
-
     addsToLibrary(idMovie);
   } catch (error) {
     console.log(error);

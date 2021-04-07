@@ -13,6 +13,7 @@ function onHomeButton() {
     return;
   }
   refs.header.id = 'home';
+  refs.inputValue.value = '';
   toggleActiveLink();
   toggleLibraryBg();
   toggleLibraryTab();
