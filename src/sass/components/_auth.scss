@@ -52,6 +52,7 @@
     height: 100%;
     padding: 20px 0;
     background-color: rgba(0, 0, 0, 0.3);
+    transition: all 250ms ease;
   }
   &__modal-container {
     padding: 10px 30px;
@@ -170,7 +171,6 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: all 250ms linear;
 }
 .hide {
   opacity: 0;

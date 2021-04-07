@@ -1,6 +1,4 @@
 %button {
-  font-family: $primary-font;
-  font-style: normal;
   font-weight: 500;
   @include font(12px, 16px);
   width: 130px;
@@ -11,11 +9,13 @@
   border: 1px solid #ffffff;
   border-radius: 5px;
   cursor: pointer;
+
   &:not(:last-child) {
     margin-right: 20px;
   }
   &.is-active {
     background-color: $accent-color;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
     border: none;
   }
 }
