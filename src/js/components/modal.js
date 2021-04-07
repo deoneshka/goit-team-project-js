@@ -16,7 +16,19 @@ async function showModal(event) {
 
   refs.body.style.paddingRight =
     window.innerWidth - refs.body.clientWidth + 'px';
-  refs.lightBox.style.right = refs.body.clientWidth - window.innerWidth + 'px';
+  if (refs.lightBox.firstElementChild.clientHeight + 40 > window.innerHeight) {
+    refs.lightBox.firstElementChild.style.left = '0px';
+    console.log('aaa');
+  } else {
+    refs.lightBox.firstElementChild.style.left =
+      (refs.body.clientWidth - window.innerWidth) / 2 + 'px';
+  }
+
+  console.log(
+    refs.lightBox.firstElementChild.clientHeight - window.innerHeight,
+  );
+
+  refs.body.lastElementChild.style.visibility = 'hidden';
   refs.body.classList.add('no-scroll');
   refs.modal.classList.remove('is-hidden');
 
@@ -41,7 +53,8 @@ function closeModal() {
   window.removeEventListener('keydown', closeModalOnEsc);
   refs.body.classList.remove('no-scroll');
   refs.body.style.paddingRight = '0px';
-  refs.lightBox.style.right = '0px';
+  refs.lightBox.firstElementChild.style.left = '0px';
+  refs.body.lastElementChild.style.visibility = 'visible';
 }
 
 function closeModalOnBackdrop(event) {
