@@ -1,7 +1,27 @@
 .authorization {
+  &__wrapper {
+    display: flex;
+  }
+  &__main-btn,
+  &__logout-btn {
+    display: block;
+    width: 20px;
+    height: 24px;
+  }
+  &__logo:hover {
+    fill: $accent-color;
+  }
   &__logo {
     width: 20px;
     height: 24px;
+    fill: $logo-color;
+  }
+  &__logout {
+    width: 20px;
+    height: 24px;
+    fill: $accent-color;
+  }
+  &__logout:hover {
     fill: $logo-color;
   }
   &__close-btn {
@@ -147,6 +167,12 @@
 }
 
 .invisible {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 250ms linear;
+}
+.hide {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

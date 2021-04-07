@@ -17,6 +17,7 @@ apiKey: "AIzaSyBsh1sTBXWGmCNayKn94Jdm8L4dd8oBEh8",
 firebase.initializeApp(firebaseConfig);
 
 refs.authOpenBtn.addEventListener('click', openAuthnModal);
+refs.logOutBtn.addEventListener('click', logOut);
 
 
 function openAuthnModal() {
@@ -27,7 +28,8 @@ function openAuthnModal() {
     refs.body.classList.add('no-scroll');
 
     //const
-    const authForm = document.querySelector('.authorization__form');
+  const authForm = document.querySelector('.authorization__form');
+ 
  
     //listeners
     refs.authModal.addEventListener('click', closeAuthModalOnBackdrop);
@@ -103,6 +105,9 @@ function createNewUser(email, password, event) {
       if (cred.user.uid) {
         successfulSignUp()
         closeAuthModal()
+        refs.logOutBtn.classList.remove('hide');
+        refs.authOpenBtn.classList.add('hide');
+
       }
     })
     .catch(function (error) {
@@ -111,8 +116,10 @@ function createNewUser(email, password, event) {
       const errorMessage = error.message;
       if (errorCode == 'auth/weak-password') {
         weakPassword()
+        closeAuthModal()
       } else {
         errorAlert(errorMessage)
+        closeAuthModal()
       }
       console.log(error);
     });
@@ -126,6 +133,8 @@ function loginUser(email, password, event) {
       if (cred.user.isAnonymous === false) {
         successfulLogIn()
         closeAuthModal()
+        refs.logOutBtn.classList.remove('hide');
+        refs.authOpenBtn.classList.add('hide');
       }
     })
     .catch(function(error) {
@@ -134,12 +143,26 @@ function loginUser(email, password, event) {
   const errorMessage = error.message;
   if (errorCode === 'auth/wrong-password') {
     alert('Wrong password.');
+    closeAuthModal()
   } else {
     errorAlert(errorMessage);
+    closeAuthModal()
   }
   console.log(error);
 });
  } 
+}
+
+//logout func
+function logOut() {
+  firebase.auth().signOut().then(function () {
+    refs.logOutBtn.classList.add('hide');
+    refs.authOpenBtn.classList.remove('hide');
+   loggedout()
+}, function(error) {
+  errorAlert(error.code);
+   errorAlert(error.message);
+});
 }
 
 
@@ -150,7 +173,6 @@ function successfulSignUp() {
   type: 'success'
    });
 }
-
 function weakPassword() {
    alert({
   text: "The password is too weak.",
@@ -169,3 +191,9 @@ function successfulLogIn() {
   type: 'success'
    });
 }
+function loggedout() {
+  alert({
+    text: "You are logged out!",
+    type: 'success'
+  })
+};
