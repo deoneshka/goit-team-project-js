@@ -3,7 +3,7 @@ import filmotekaApiService from './getApiClass';
 
 async function getMovie(id) {
   const movieInfo = await filmotekaApiService.fetchMovies(id);
-  
+
   //Жанр конвертер для карточки
   movieInfo.genres = await movieInfo.genres
     .map(el => {
@@ -11,7 +11,6 @@ async function getMovie(id) {
     })
     .slice(0, 2)
     .join(', ');
-    console.log(movieInfo);
 
   await renderMovieData(movieInfo);
 }
