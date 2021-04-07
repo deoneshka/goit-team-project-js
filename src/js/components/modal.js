@@ -9,7 +9,6 @@ refs.lightBox.addEventListener('click', closeModalOnBackdrop);
 refs.onMovieClick.addEventListener('click', showModal);
 
 async function showModal(event) {
-  
   event.preventDefault();
 
   const target = event.target.parentNode;
@@ -19,15 +18,14 @@ async function showModal(event) {
     window.innerWidth - refs.body.clientWidth + 'px';
   if (refs.lightBox.firstElementChild.clientHeight + 40 > window.innerHeight) {
     refs.lightBox.firstElementChild.style.left = '0px';
-    console.log('aaa');
   } else {
     refs.lightBox.firstElementChild.style.left =
       (refs.body.clientWidth - window.innerWidth) / 2 + 'px';
   }
 
-  console.log(
-    refs.lightBox.firstElementChild.clientHeight - window.innerHeight,
-  );
+  // console.log(
+  //   refs.lightBox.firstElementChild.clientHeight - window.innerHeight,
+  // );
 
   refs.body.lastElementChild.style.visibility = 'hidden';
   refs.body.classList.add('no-scroll');

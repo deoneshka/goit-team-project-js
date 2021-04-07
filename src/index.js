@@ -7,6 +7,6 @@ import './js/components/modal';
 import './js/components/renderCardInfo';
 import './js/components/backToTop';
 import './js/components/paginationPages';
-import './js/components/fetchMoviesLocalStorage';
+import './js/components/getMoviesLocalStorage';
 import './js/components/auth';
 import './js/components/modalTeam';

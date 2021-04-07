@@ -1,21 +1,25 @@
 import refs from './refs';
 import { PopularMovie } from './getPopularMovies';
 import filmotekaApiService from './getApiClass';
-import { clearContainer } from './clearContainer';
 
 refs.homeButton.addEventListener('click', onHomeButton);
 refs.libraryButton.addEventListener('click', onLibraryButton);
 
 function onHomeButton() {
-  filmotekaApiService.resetPage();
-  PopularMovie();
-  if (refs.header.id === 'home') return;
+  if (refs.header.id === 'home') {
+    refs.inputValue.value = '';
+    filmotekaApiService.resetPage();
+    PopularMovie();
+    return;
+  }
   refs.header.id = 'home';
   toggleActiveLink();
   toggleLibraryBg();
   toggleLibraryTab();
   toggleHomeTab();
-  refs.paginationRef.classList.remove('hidden');
+  refs.paginationRef.classList.remove('invisible');
+  filmotekaApiService.resetPage();
+  PopularMovie();
 }
 
 function onLibraryButton() {
@@ -25,8 +29,11 @@ function onLibraryButton() {
   toggleLibraryBg();
   toggleHomeTab();
   toggleLibraryTab();
-  refs.paginationRef.classList.add('hidden');
-  refs.filmList.innerHTML = '';
+  refs.paginationRef.classList.add('invisible');
+  refs.libraryWatchedBtn.classList.remove('is-active');
+  refs.libraryQueueBtn.classList.remove('is-active');
+  refs.filmList.innerHTML =
+    '<p>Select at the top what you want to display: viewed or queued ☝🏻</p>';
 }
 ///////////////////////////////////////////////////////////
 function toggleHomeTab() {

@@ -1,17 +1,29 @@
 import filmotekaApiService from './getApiClass';
 import movieAdapter from '../utils/movieListsAdapter';
 import watchedFilmsCard from '/templates/watchedFilmsCard.hbs';
-import {clearContainer} from './clearContainer';
-import { appendMovieListMarkup } from './renderMoviesList'
+import { clearContainer } from './clearContainer';
+import { appendMovieListMarkup } from './renderMoviesList';
 import refs from './refs';
 
 refs.libraryWatchedBtn.addEventListener('click', e => {
   const keyLocalStotage = 'filmWatched';
-  fetchMoviesID(keyLocalStotage);
+  refs.libraryQueueBtn.classList.remove('is-active');
+  refs.libraryWatchedBtn.classList.add('is-active');
+  if (localStorage.getItem(keyLocalStotage)) {
+    fetchMoviesID(keyLocalStotage);
+  } else {
+    refs.filmList.innerHTML = '<p>Your watched library is empty 🙈</p>';
+  }
 });
 refs.libraryQueueBtn.addEventListener('click', e => {
   const keyLocalStotage = 'filmQueue';
-  fetchMoviesID(keyLocalStotage);
+  refs.libraryWatchedBtn.classList.remove('is-active');
+  refs.libraryQueueBtn.classList.add('is-active');
+  if (localStorage.getItem(keyLocalStotage)) {
+    fetchMoviesID(keyLocalStotage);
+  } else {
+    refs.filmList.innerHTML = '<p>Your queue library is empty 🙈</p>';
+  }
 });
 
 async function fetchMoviesID(key) {
