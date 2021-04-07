@@ -2,9 +2,8 @@ import Pagination from 'tui-pagination';
 import refs from './refs';
 import filmotekaApiService from './getApiClass';
 import { clearContainer } from './clearContainer';
-import { genresIdConverter } from '../utils/genreConverter'
+import { genresIdConverter } from '../utils/genreConverter';
 import { renderMovieList } from './renderMoviesList';
-
 
 const options = {
   totalItems: 20000,
@@ -15,7 +14,8 @@ const options = {
   lastItemClassName: 'tui-last-child',
   template: {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
       '<a href="#" class="tui-page-btn tui-{{type}}">' +
       '<span class="tui-ico-{{type}}"></span>' +
@@ -27,22 +27,22 @@ const options = {
     moreButton:
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
       '<span class="tui-ico-ellip">...</span>' +
-      '</a>'
-  }
+      '</a>',
+  },
 };
 
 const pagination = new Pagination(refs.paginationRef, options);
-  
-refs.paginationRef.addEventListener("click", (event) => {
+
+refs.paginationRef.addEventListener('click', event => {
   isEnabled(event);
-})
+});
 
 function isEnabled(event) {
   const arr = Array.from(event.target.classList);
-  if (!arr.includes("tui-pagination")) {
+  if (!arr.includes('tui-pagination')) {
     setPaginator(event);
-  };
-};
+  }
+}
 
 async function setPaginator(event) {
   let text = event.target.textContent;
@@ -50,7 +50,6 @@ async function setPaginator(event) {
   let lastPage = options.totalItems / options.itemsPerPage;
   const activeBtnRef = document.querySelector('.tui-is-selected');
 
-  
   if (event.target.classList[1] === 'tui-next') {
     page += 1;
   } else if (event.target.classList[1] === 'tui-prev') {
@@ -63,13 +62,13 @@ async function setPaginator(event) {
     page = Number(activeBtnRef.textContent);
   } else {
     page = Number(text);
-  };
+  }
 
   if (page && page !== lastPage) {
     filmotekaApiService.page = page;
-    
+
     if (!refs.inputValue.value) {
-      try{
+      try {
         const popularList = await filmotekaApiService.fetchResults();
         const { results } = popularList;
         await results.map(el => genresIdConverter(el));
@@ -77,33 +76,24 @@ async function setPaginator(event) {
         renderMovieList(popularList);
         scrollElements();
         return;
+      } catch (error) {
+        console.log(error);
       }
-    catch (error){
-      console.log(error);
     }
-  };
-  
-  const searchList = await filmotekaApiService.fetchSearch();
-  const { results } = searchList;
-  results.map(el => genresIdConverter(el));
-  clearContainer(refs.filmList);
-  renderMovieList(searchList);
-  scrollElements();
-  };
-};
+
+    const searchList = await filmotekaApiService.fetchSearch();
+    const { results } = searchList;
+    results.map(el => genresIdConverter(el));
+    clearContainer(refs.filmList);
+    renderMovieList(searchList);
+    scrollElements();
+  }
+}
 
 function scrollElements() {
-  const scrollHeight = Math.max(
-    refs.header.scrollHeight,
-    refs.header.offsetHeight,
-    refs.header.clientHeight);
-    
-  setTimeout(() => {
-    window.scrollTo({
-      top: scrollHeight,
-      behavior: 'smooth',
-    });
-  }, 500);
-};
-  
-export { pagination }
+  window.scrollTo({
+    top: 0,
+  });
+}
+
+export { pagination };

@@ -2,8 +2,8 @@
 .spinner:before,
 .spinner:after {
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
+  width: 25px;
+  height: 25px;
   opacity: 1;
   visibility: visible;
   pointer-events: none;
@@ -16,11 +16,11 @@
 .spinner {
   position: fixed;
   color: $accent-color;
-  // top: -55px;
   top: 170px;
   left: 50%;
   transform: translate(-50%);
   animation-delay: -0.16s;
+
   &:before,
   &:after {
     content: '';
