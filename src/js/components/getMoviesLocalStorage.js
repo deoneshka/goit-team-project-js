@@ -7,9 +7,16 @@ import refs from './refs';
 
 refs.libraryWatchedBtn.addEventListener('click', e => {
   const keyLocalStotage = 'filmWatched';
+  const filmsStorage = localStorage.getItem(keyLocalStotage);
+  const filmsStorageID = JSON.parse(filmsStorage);
+
   refs.libraryQueueBtn.classList.remove('is-active');
   refs.libraryWatchedBtn.classList.add('is-active');
   if (localStorage.getItem(keyLocalStotage)) {
+    if (filmsStorageID.length === 0) {
+      return (refs.filmList.innerHTML =
+        '<p>Your watched library is empty 🙈</p>');
+    }
     fetchMoviesID(keyLocalStotage);
   } else {
     refs.filmList.innerHTML = '<p>Your watched library is empty 🙈</p>';
@@ -17,9 +24,16 @@ refs.libraryWatchedBtn.addEventListener('click', e => {
 });
 refs.libraryQueueBtn.addEventListener('click', e => {
   const keyLocalStotage = 'filmQueue';
+  const filmsStorage = localStorage.getItem(keyLocalStotage);
+  const filmsStorageID = JSON.parse(filmsStorage);
+
   refs.libraryWatchedBtn.classList.remove('is-active');
   refs.libraryQueueBtn.classList.add('is-active');
   if (localStorage.getItem(keyLocalStotage)) {
+    if (filmsStorageID.length === 0) {
+      return (refs.filmList.innerHTML =
+        '<p>Your queue library is empty 🙈</p>');
+    }
     fetchMoviesID(keyLocalStotage);
   } else {
     refs.filmList.innerHTML = '<p>Your queue library is empty 🙈</p>';
