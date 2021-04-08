@@ -165,6 +165,14 @@ function logOut() {
 });
 }
 
+//user info
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+  refs.authOpenBtn.classList.add('hide');
+  refs.logOutBtn.classList.remove('hide');
+ 
+ }
+});
 
 //notify
 function successfulSignUp() {
