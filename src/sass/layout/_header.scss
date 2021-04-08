@@ -19,10 +19,18 @@
   padding: 46px 0 65px;
 }
 .logo {
+  animation: bounceInLeft;
+  animation-duration: 1.5s;
   &__icon {
+    display: inline-block;
     width: 24px;
     height: 24px;
     stroke: $logo-color;
+
+    animation: pulse;
+    animation-duration: 1.4s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
   }
   &__text {
     display: none;
