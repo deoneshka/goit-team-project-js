@@ -9,14 +9,12 @@ backdropRef.addEventListener('click', closeByClickOnBackdrop);
 
 function openTeamModal(event) {
   event.preventDefault();
-  backdropRef.classList.remove('hidden');
   backdropRef.classList.remove('is-hidden');
   refs.body.classList.add('no-scroll');
   window.addEventListener('keydown', closeTeamModalOnEsc);
 }
 
 function closeTeamModal() {
-  backdropRef.classList.add('hidden');
   backdropRef.classList.add('is-hidden');
   refs.body.classList.remove('no-scroll');
   window.removeEventListener('keydown', closeTeamModalOnEsc);
