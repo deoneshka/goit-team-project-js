@@ -72,7 +72,7 @@ async function setPaginator(event) {
         scrollElements();
         const popularList = await filmotekaApiService.fetchResults();
         const { results } = popularList;
-        await results.map(el => genresIdConverter(el));
+        results.map(el => genresIdConverter(el));
         clearContainer(refs.filmList);
         renderMovieList(popularList);
         return;
@@ -81,14 +81,18 @@ async function setPaginator(event) {
       }
     }
 
-    scrollElements();
-    const searchList = await filmotekaApiService.fetchSearch();
-    const { results } = searchList;
-    results.map(el => genresIdConverter(el));
-    clearContainer(refs.filmList);
-    renderMovieList(searchList);
+    try {
+      scrollElements();
+      const searchList = await filmotekaApiService.fetchSearch();
+      const { results } = searchList;
+      results.map(el => genresIdConverter(el));
+      clearContainer(refs.filmList);
+      renderMovieList(searchList);
+    } catch (error) {
+      console.log(error);
+    }
   }
-}
+};
 
 function scrollElements() {
   window.scrollTo({
