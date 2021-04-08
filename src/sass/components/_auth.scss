@@ -136,8 +136,9 @@
     &__modal-container {
       position: absolute;
       width: 500px;
-      top: 120px;
-      left: 134px;
+      left: 50%;
+      top: 25%;
+      transform: translate(-50%);
     }
     &__form {
       width: 440px;
@@ -162,7 +163,9 @@
 @media screen and (min-width: 1024px) {
   .authorization {
     &__modal-container {
-      left: 470px;
+      left: 50%;
+      top: 25%;
+      transform: translate(-50%);
     }
   }
 }
