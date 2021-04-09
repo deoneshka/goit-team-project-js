@@ -10,6 +10,8 @@
   }
   &__logo:hover {
     fill: $accent-color;
+    border-radius: 50%;
+    box-shadow: 2px 2px 15px 2px rgba(255, 126, 4, 0.72);
   }
   &__logo {
     width: 20px;
@@ -23,6 +25,8 @@
   }
   &__logout:hover {
     fill: $logo-color;
+    border-radius: 50%;
+    box-shadow: 2px 2px 15px 2px rgba(255, 126, 4, 0.72);
   }
   &__close-btn {
     align-self: flex-end;
@@ -30,16 +34,20 @@
     cursor: pointer;
     width: 30px;
     height: 30px;
-    fill: #000000;
-    background-color: transparent;
+    border-radius: 50%;
+
+    background-color: $footer-bg-color;
     border: none;
     &-icon {
       width: 30px;
       height: 30px;
     }
   }
-  &__close-btn:hover {
-    border: none;
+  &__close-btn:hover,
+  &__close-btn:focus {
+    // border: 1px solid $accent-color;
+    border-radius: 50%;
+    box-shadow: 2px 2px 15px 4px rgba(255, 126, 4, 0.72);
     outline: none;
   }
 
@@ -59,8 +67,12 @@
     }
   }
   &__modal-container {
+    min-height: 235px;
     padding: 10px 30px;
-    background-color: white;
+    background-color: black;
+    opacity: 93%;
+    border: 1px solid $accent-color;
+    box-shadow: 2px 2px 15px 2px rgba(255, 126, 4, 0.72);
 
     border-radius: 4px;
   }
@@ -74,7 +86,7 @@
     &-label {
       font-weight: 400;
       @include font(14px, 16px);
-      color: $movie-title-color;
+      color: $logo-title-color;
     }
     &-input {
       display: block;
@@ -83,6 +95,11 @@
       padding: 5px;
       margin-bottom: 10px;
       border-radius: 4px;
+      border: 1px solid $accent-color;
+    }
+    &-input:focus {
+      border: 1px solid $accent-color;
+      outline: none;
     }
   }
   &__submit-container {
@@ -101,11 +118,19 @@
     width: 100px;
     height: 35px;
     color: $movie-title-color;
-    background-color: transparent;
+    background-color: $accent-color;
     outline: none;
     border: 1px solid $accent-color;
     border-radius: 5px;
     cursor: pointer;
+  }
+  &__login-btn:hover,
+  &__registration-btn:hover,
+  &__login-btn:focus,
+  &__registration-btn:focus {
+    color: $header-text-color;
+    background-color: $accent-color;
+    box-shadow: 2px 2px 15px 2px rgba(255, 126, 4, 0.72);
   }
   &__registration-btn {
     font-family: $primary-font;
@@ -115,7 +140,7 @@
     width: 100px;
     height: 35px;
     color: $movie-title-color;
-    background-color: transparent;
+    background-color: $accent-color;
     outline: none;
     border: 1px solid $accent-color;
     border-radius: 5px;
@@ -158,6 +183,7 @@
       top: 15px;
       right: 15px;
     }
+
     &__submit-container {
       justify-content: space-around;
     }
